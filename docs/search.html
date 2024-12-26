@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Search Page</title>
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+   <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<header class="header">
+
+   <nav class="navbar nav-1">
+      <section class="flex">
+         <a href="index.html" class="logo"><i class="fas fa-house"></i>House Advisor</a>
+
+         <ul>
+            <li><a href="#">post property<i class="fas fa-paper-plane"></i></a></li>
+         </ul>
+      </section>
+   </nav>
+</header>
+
+<section class="filters" style="padding-bottom: 0;">
+
+   <form action="" method="post">
+      <div id="close-filter"><i class="fas fa-times"></i></div>
+      <h3>filter your search</h3>
+         <div class="flex">
+            <div class="box">
+               <p>enter location</p>
+               <input type="text" name="location" required maxlength="50" placeholder="enter ciyt name" class="input">
+            </div>
+            <div class="box">
+               <p>property type</p>
+               <select name="type" class="input" required>
+                  <option value="flat">flat</option>
+                  <option value="house">house</option>
+               </select>
+            </div>
+            <div class="box">
+               <p>how many rooms?</p>
+               <select name="rooms" class="input" required>
+                     <option value="1">1 room</option>
+                     <option value="2">2 rooms</option>
+                     <option value="3">3 rooms</option>
+                     <option value="4">4 rooms</option>
+                     <option value="5">5 rooms</option>
+                     <option value="6">6 rooms</option>
+               </select>
+            </div>
+            <div class="box">
+               <p>minimum budget</p>
+               <select name="minimum" class="input" required>
+                     <option value="20000">2000 hryvna</option>
+                     <option value="30000">3000 hryvnia</option>
+                     <option value="40000">4000 hryvnia</option>
+                     <option value="50000">5000 hryvnia </option>
+                     <option value="60000">6000 hryvnia</option>
+                     <option value="70000">7000 hryvnia</option>
+                     <option value="80000">8000 hryvnia</option>
+                     <option value="90000">9000 hryvnia</option>
+               </select>
+            </div>
+            <div class="box">
+               <p>maximum budget</p>
+               <select name="maximum" class="input" required>
+                  <option value="60000">6000 hryvnia</option>
+                  <option value="70000">7000 hryvnia</option>
+                  <option value="80000">8000 hryvnia</option>
+                  <option value="90000">9000 hryvnia</option>
+                  <option value="10000">10000 hryvnia</option>
+                  <option value="11000">11000 hryvnia</option>
+                  <option value="12000">12000 hryvnia</option>
+                  <option value="13000">13000 hryvnia</option>
+                  <option value="14000">14000 hryvnia</option>
+                  <option value="15000">15000 hryvnia</option>
+                  <option value="16000">16000 hryvnia</option>
+                  <option value="17000">17000 hryvnia</option>
+               </select>
+            </div>
+            <div class="box">
+               <p>furnished</p>
+               <select name="furnished" class="input" required>
+                  <option value="unfurnished">unfurnished</option>
+                  <option value="furnished">furnished</option>
+                  <option value="semi-furnished">semi-furnished</option>
+               </select>
+            </div>
+         </div>
+         <input type="submit" value="search property" name="search" class="btn">
+   </form>
+
+</section>
+
+<div id="filter-btn" class="fas fa-filter"></div>
+
+
+<section class="listings">
+
+   <h1 class="heading">searched results</h1>
+
+   <div class="box-container">
+
+      <div class="box">
+         <div class="admin">
+            <h3>S</h3>
+            <div>
+               <p>Sofia Mykhailova</p>
+               <span>10-05-2024</span>
+            </div>
+         </div>
+         <div class="thumb">
+            <p class="total-images"><i class="far fa-image"></i><span>4</span></p>
+            <p class="type"><span>house</span><span>sale</span></p>
+            <form action="" method="post" class="save">
+               <button type="submit" name="save" class="far fa-heart"></button>
+            </form>
+            <img src="images/house-img-1.webp" alt="">
+         </div>
+         <h3 class="name">modern flats and appartments</h3>
+         <p class="location"><i class="fas fa-map-marker-alt"></i><span>Kyiv, Ukraine</span></p>
+         <div class="flex">
+            <p><i class="fas fa-bed"></i><span>3</span></p>
+            <p><i class="fas fa-bath"></i><span>2</span></p>
+            <p><i class="fas fa-maximize"></i><span>100 square meter</span></p>
+         </div>
+         <a href="view_property.html" class="btn">view property</a>
+      </div>
+
+      <div class="box">
+         <div class="admin">
+            <h3>S</h3>
+            <div>
+               <p>Sofia Mykhailova</p>
+               <span>10-05-2024</span>
+            </div>
+         </div>
+         <div class="thumb">
+            <p class="total-images"><i class="far fa-image"></i><span>4</span></p>
+            <p class="type"><span>flat</span><span>sale</span></p>
+            <form action="" method="post" class="save">
+               <button type="submit" name="save" class="far fa-heart"></button>
+            </form>
+            <img src="images/house-img-2.webp" alt="">
+         </div>
+         <h3 class="name">modern flats and appartments</h3>
+         <p class="location"><i class="fas fa-map-marker-alt"></i><span>Kyiv, Ukraine</span></p>
+         <div class="flex">
+            <p><i class="fas fa-bed"></i><span>3</span></p>
+            <p><i class="fas fa-bath"></i><span>2</span></p>
+            <p><i class="fas fa-maximize"></i><span>90 square meter</span></p>
+         </div>
+         <a href="view_property.html" class="btn">view property</a>
+      </div>
+
+      <div class="box">
+         <div class="admin">
+            <h3>S</h3>
+            <div>
+               <p>Sofia Mykhailova</p>
+               <span>10-05-2024</span>
+            </div>
+         </div>
+         <div class="thumb">
+            <p class="total-images"><i class="far fa-image"></i><span>4</span></p>
+            <p class="type"><span>flat</span><span>sale</span></p>
+            <form action="" method="post" class="save">
+               <button type="submit" name="save" class="far fa-heart"></button>
+            </form>
+            <img src="images/house-img-3.jpg" alt="">
+         </div>
+         <h3 class="name">modern flats and appartments</h3>
+         <p class="location"><i class="fas fa-map-marker-alt"></i><span> Kyiv, Ukraine </span></p>
+         <div class="flex">
+            <p><i class="fas fa-bed"></i><span>3</span></p>
+            <p><i class="fas fa-bath"></i><span>2</span></p>
+            <p><i class="fas fa-maximize"></i><span>70 square meter</span></p>
+         </div>
+         <a href="view_property.html" class="btn">view property</a>
+      </div>
+
+   </div>
+
+</section>
+
+
+
+
+<footer class="footer">
+
+   <section class="flex">
+
+      <div class="box">
+         <a href="tel:+380970028783"><i class="fas fa-phone"></i><span>+380970028783</span></a>
+         <a href="mailto: mykhailova.sofia@lll.kpi.ua"><i class="fas fa-envelope"></i><span>mykhailova.sofia@lll.kpi.ua</span></a>
+         <a href="#"><i class="fas fa-map-marker-alt"></i><span>Kyiv, Ukraine</span></a>
+      </div>
+
+      <div class="box">
+         <a href="index.html"><span>home</span></a>
+         <a href="about.html"><span>about</span></a>
+         <a href="listings.html"><span>all listings</span></a>
+      </div>
+   </section>
+</footer>
+
+
+
+<script src="js/script.js"></script>
+
+<script>
+
+document.querySelector('#filter-btn').onclick = () =>{
+   document.querySelector('.filters').classList.add('active');
+}
+
+document.querySelector('#close-filter').onclick = () =>{
+   document.querySelector('.filters').classList.remove('active');
+}
+
+</script>
+
+</body>
+</html>

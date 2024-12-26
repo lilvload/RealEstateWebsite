@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Home</title>
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+   <link rel="stylesheet" href="css/style.css">
+   <!DOCTYPE html>
+</head>
+<body>
+
+<header class="header">
+        <nav class="navbar nav-1">
+           <section class="flex">
+              <a href="index.html" class="logo"><i class="fas fa-house"></i>House Advisor</a>
+              <ul>
+                 <li><a href="add_property.html">post property<i class="fas fa-paper-plane"></i></a></li>
+              </ul>
+           </section>
+        </nav>
+</header>
+
+<div class="form-container">
+    <form id="propertyForm" onsubmit="saveProperty(event)">
+        <label for="name">Назва квартири:</label>
+        <input type="text" id="name" required>
+    
+        <label for="location">Місцезнаходження:</label>
+        <input type="text" id="location" required>
+    
+        <label for="price">Ціна:</label>
+        <input type="number" id="price" required>
+    
+        <label for="rooms">Кількість кімнат:</label>
+        <input type="number" id="rooms" required>
+    
+        <label for="image">Додати зображення:</label>
+        <input type="file" id="image" accept="image/*" onchange="previewImage(event)">
+        <p>або</p>
+        <label for="imageUrl">Вставити URL картинки:</label>
+        <input type="text" id="imageUrl" placeholder="https://example.com/image.jpg">
+    
+        <img id="imagePreview" src="" alt="Попередній перегляд" style="display:none; max-width: 100%; margin-top: 10px;">
+    
+        <button type="submit">Додати квартиру</button>
+    </form>
+    
+</div>
+
+<footer class="footer">
+
+    <section class="flex">
+ 
+       <div class="box">
+          <a href="tel:+380970028783"><i class="fas fa-phone"></i><span>+380970028783</span></a>
+          <a href="mailto: mykhailova.sofia@lll.kpi.ua"><i class="fas fa-envelope"></i><span>mykhailova.sofia@lll.kpi.ua</span></a>
+          <a href="#"><i class="fas fa-map-marker-alt"></i><span>Kyiv, Ukraine</span></a>
+       </div>
+ 
+       <div class="box">
+          <a href="index.html"><span>home</span></a>
+          <a href="about.html"><span>about</span></a>
+          <a href="listings.html"><span>all listings</span></a>
+       </div>
+    </section>
+ </footer>
+ 
+
+ <script>
+    function submitProperty() {
+        const id = document.getElementById('propertyId').value;
+        const city = document.getElementById('city').value;
+        const address = document.getElementById('address').value;
+        const beds = document.getElementById('beds').value;
+        const price = document.getElementById('price').value;
+    
+        const method = id ? 'PUT' : 'POST'; // Use PUT for edit, POST for create
+        const url = `https://localhost:7279/api/Apartment${id ? '/' + id : ''}`;
+    
+        fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id, city, address, beds, price })
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Something went wrong with the API');
+        })
+        .then(data => {
+            alert('Property saved successfully!');
+            window.location.href = 'listings.html'; // Redirect to the listings page
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to save the property.');
+        });
+        const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+const raw = JSON.stringify({
+  "city": "<string>",
+  "address": "<string>",
+  "beds": "<integer>",
+  "price": "<double>"
+});
+
+const requestOptions = {
+  method: "POST",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("//api/Apatment", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
+    }
+    
+    function deleteProperty() {
+        const id = document.getElementById('propertyId').value;
+        if (!id) {
+            alert('No property selected!');
+            return;
+        }
+    
+        fetch(`https://localhost:7279/api/Apartment/${id}`, {
+            method: 'DELETE'
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            throw new Error('Something went wrong with the API');
+        })
+        .then(data => {
+            alert('Property deleted successfully!');
+            // Optionally clear form or update UI here
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to delete the property.');
+        });
+    }
+    </script>
+    
+
+</body>
+</html>
