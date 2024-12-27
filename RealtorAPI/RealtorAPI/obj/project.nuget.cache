@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Asj60eJJfvc=",
+  "dgSpecHash": "i7m+OG2seY4=",
   "success": true,
-  "projectFilePath": "D:\\Завантаження\\Telegram Desktop\\real-estate website\\real-estate website\\RealtorAPI\\RealtorAPI\\RealtorAPI.csproj",
+  "projectFilePath": "C:\\Users\\ladyb\\OneDrive\\Рабочий стол\\проект веб\\RealEstateWebsite\\RealtorAPI\\RealtorAPI\\RealtorAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ladyb\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\ladyb\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",

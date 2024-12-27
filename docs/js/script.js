@@ -46,13 +46,21 @@ function previewImage(event) {
 function saveProperty(event) {
     event.preventDefault();
 
-    const name = document.getElementById('name').value;
-    const location = document.getElementById('location').value;
+    // Отримуємо дані з форми
+    const name = document.getElementById('name').value.trim();
+    const location = document.getElementById('location').value.trim();
     const price = parseInt(document.getElementById('price').value);
     const rooms = parseInt(document.getElementById('rooms').value);
     const fileInput = document.getElementById('image');
-    const imageUrlInput = document.getElementById('imageUrl').value;
+    const imageUrlInput = document.getElementById('imageUrl').value.trim();
 
+    // Перевірка заповненості форми
+    if (!name || !location || isNaN(price) || isNaN(rooms)) {
+        alert('Будь ласка, заповніть усі обов’язкові поля!');
+        return;
+    }
+
+    // Обробка зображення
     let imageUrl = '';
     if (fileInput.files.length > 0) {
         const file = fileInput.files[0];
@@ -61,21 +69,122 @@ function saveProperty(event) {
         imageUrl = imageUrlInput;
     }
 
+    console.log('Додаємо квартиру:', { name, location, price, rooms, imageUrl });
+
+    // Додаємо нову квартиру до localStorage
     const properties = JSON.parse(localStorage.getItem('properties')) || [];
     properties.push({ name, location, price, rooms, imageUrl });
 
     localStorage.setItem('properties', JSON.stringify(properties));
     alert('Квартиру додано успішно!');
+
+    // Оновлюємо список оголошень
     displayListings(properties);
 }
+
+function displayListings(properties) {
+    const listingsContainer = document.getElementById('listings');
+    console.log('Відображення квартир:', properties);
+    listingsContainer.innerHTML = ''; // Очищення контейнера перед оновленням
+
+    properties.forEach(property => {
+        const propertyDiv = document.createElement('div');
+        propertyDiv.className = 'box';
+        propertyDiv.setAttribute('data-location', property.location);
+        propertyDiv.setAttribute('data-type', property.type || 'flat');
+        propertyDiv.setAttribute('data-rooms', property.rooms);
+        propertyDiv.setAttribute('data-price', property.price);
+
+        propertyDiv.innerHTML = `
+            <div class="thumb">
+                <img src="${property.imageUrl || 'images/default.jpg'}" alt="property image">
+            </div>
+            <h3 class="name">${property.name}</h3>
+            <p class="location">${property.location}</p>
+            <p class="price">${property.price} UAH</p>
+        `;
+        listingsContainer.appendChild(propertyDiv);
+    });
+}
+
+
 
 
 
 // Виклик при завантаженні сторінки Home
 document.addEventListener('DOMContentLoaded', () => {
-    const properties = JSON.parse(localStorage.getItem('properties')) || [];
-    displayListings(properties);
+    const listingsContainer = document.getElementById('listings');
+
+    while (!listingsContainer) {
+        console.error('Element with id "listings" not found in the DOM.');
+        return;
+    }
+
+    // Check if flats are already initialized in localStorage
+    const existingFlats = JSON.parse(localStorage.getItem('flats')) || [];
+
+    if (existingFlats.length === 0) {
+        console.log('No flats found in local storage. Initializing from flats.json.');
+
+        // Fetch data from the flats.json file
+        fetch('flats.json') // Path to the flats.json file
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to fetch flats.json');
+                }
+                return response.json();
+            })
+            .then(flatsData => {
+                // Save fetched flats to localStorage
+                localStorage.setItem('flats', JSON.stringify(flatsData));
+
+                // Render the flats on the page
+                renderFlats(flatsData);
+            })
+            .catch(error => {
+                console.error('Error fetching flats.json:', error);
+                listingsContainer.innerHTML = '<p>Failed to load listings. Please try again later.</p>';
+            });
+    } else {
+        console.log('Flats already exist in local storage. Rendering flats.');
+        renderFlats(existingFlats); // Render existing flats
+    }
+
+    // Function to render flats into the listings container
+    function renderFlats(flats) {
+        listingsContainer.innerHTML = ''; // Clear existing content
+
+        flats.forEach(flat => {
+            const flatElement = document.createElement('div');
+            flatElement.className = 'box';
+            flatElement.setAttribute('data-price', flat.price);
+            flatElement.setAttribute('data-location', flat.city);
+            flatElement.setAttribute('data-rooms', flat.rooms);
+
+            flatElement.innerHTML = `
+                <div class="admin">
+                    <h3>${flat.owner ? flat.owner[0] : 'A'}</h3>
+                    <div>
+                        <p>${flat.owner || 'Anonymous'}</p>
+                        <span>${new Date(flat.dateAdded).toLocaleDateString()}</span>
+                    </div>
+                </div>
+                <div class="thumb">
+                    <img src="${flat.imageUrl || 'images/default.jpg'}" alt="Flat image">
+                </div>
+                <p class="location"><i class="fas fa-map-marker-alt"></i><span>${flat.city}</span></p>
+                <div class="flex">
+                    <p><i class="fas fa-bed"></i><span>${flat.rooms}</span></p>
+                    <p><i class="fas fa-cost"></i><span>${flat.price} UAH</span></p>
+                </div>
+                <a href="view_property.html?id=${flat.id}" class="btn">View Property</a>
+            `;
+            listingsContainer.appendChild(flatElement);
+        });
+    }
 });
+
+
 
 document.getElementById('search-form').addEventListener('submit', function (event) {
     event.preventDefault(); // Зупиняємо перезавантаження сторінки
@@ -93,22 +202,40 @@ document.getElementById('search-form').addEventListener('submit', function (even
     apartments.forEach(apartment => {
         // Отримуємо дані з атрибутів data-*
         const aptLocation = apartment.dataset.location.toLowerCase();
-        const aptType = apartment.dataset.type.toLowerCase();
+        // const aptType = apartment.dataset.type.toLowerCase();
         const aptRooms = parseInt(apartment.dataset.rooms);
         const aptPrice = parseInt(apartment.dataset.price);
 
         // Перевірка відповідності фільтрам
         const matchesLocation = locationInput === '' || aptLocation.includes(locationInput);
-        const matchesType = aptType === typeInput;
+        // const matchesType = aptType === typeInput;
         const matchesRooms = aptRooms === roomsInput;
         const matchesPrice = aptPrice >= minPriceInput && aptPrice <= maxPriceInput;
 
         // Показуємо/приховуємо квартиру залежно від відповідності фільтрам
-        if (matchesLocation && matchesType && matchesRooms && matchesPrice) {
+        if (matchesLocation && matchesRooms && matchesPrice) {
             apartment.style.display = 'block'; // Показати квартиру
         } else {
             apartment.style.display = 'none'; // Приховати квартиру
         }
     });
 });
+
+function previewImage(event) {
+    const imagePreview = document.getElementById('imagePreview');
+    const file = event.target.files[0]; // Отримуємо файл
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            imagePreview.src = e.target.result; // Установлюємо зображення
+            imagePreview.style.display = 'block'; // Показуємо елемент
+        };
+        reader.readAsDataURL(file); // Читаємо файл як URL
+    } else {
+        imagePreview.style.display = 'none'; // Сховати попередній перегляд
+    }
+}
+
+
 

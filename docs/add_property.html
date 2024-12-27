@@ -25,7 +25,7 @@
 </header>
 
 <div class="form-container">
-    <form id="propertyForm" onsubmit="saveProperty(event)">
+    <form id="propertyForm" onsubmit="submitProperty(event)">
         <label for="name">Назва квартири:</label>
         <input type="text" id="name" required>
     
@@ -38,13 +38,8 @@
         <label for="rooms">Кількість кімнат:</label>
         <input type="number" id="rooms" required>
     
-        <label for="image">Додати зображення:</label>
-        <input type="file" id="image" accept="image/*" onchange="previewImage(event)">
-        <p>або</p>
         <label for="imageUrl">Вставити URL картинки:</label>
         <input type="text" id="imageUrl" placeholder="https://example.com/image.jpg">
-    
-        <img id="imagePreview" src="" alt="Попередній перегляд" style="display:none; max-width: 100%; margin-top: 10px;">
     
         <button type="submit">Додати квартиру</button>
     </form>
@@ -66,86 +61,72 @@
  
 
  <script>
-    function submitProperty() {
-        const id = document.getElementById('propertyId').value;
-        const city = document.getElementById('city').value;
-        const address = document.getElementById('address').value;
-        const beds = document.getElementById('beds').value;
-        const price = document.getElementById('price').value;
+    function submitProperty(event) {
+    event.preventDefault(); // Prevent form submission and page reload
+    console.log("enter");
     
-        const method = id ? 'PUT' : 'POST'; // Use PUT for edit, POST for create
-        const url = `https://localhost:7279/api/Apartment${id ? '/' + id : ''}`;
-    
-        fetch(url, {
-            method: method,
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ id, city, address, beds, price })
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw new Error('Something went wrong with the API');
-        })
-        .then(data => {
-            alert('Property saved successfully!');
-            window.location.href = 'listings.html'; // Redirect to the listings page
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Failed to save the property.');
-        });
-        const myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
+    // Get property details from the form
+    const id = Date.now(); // Generate a unique ID
+    const name = document.getElementById('name').value;
+    const city = document.getElementById('location').value;
+    const price = document.getElementById('price').value;
+    const beds = document.getElementById('rooms').value;
+    const imageUrl = document.getElementById('imageUrl').value;
 
-const raw = JSON.stringify({
-  "city": "<string>",
-  "address": "<string>",
-  "beds": "<integer>",
-  "price": "<double>"
-});
+    // Create a new flat object
+    const newFlat = {
+        id,
+        city:city,
+        address:"Not provided",
+        rooms: beds,
+        price: price,
+        owner: 'Default Owner', // Replace with actual owner input if available
+        imageUrl: imageUrl, // Replace with actual image upload logic if available
+        dateAdded: new Date().toISOString()
+    };
 
-const requestOptions = {
-  method: "POST",
-  headers: myHeaders,
-  body: raw,
-  redirect: "follow"
-};
+    // Fetch existing flats from local storage
+    const flats = JSON.parse(localStorage.getItem('flats')) || [];
 
-fetch("//api/Apatment", requestOptions)
-  .then((response) => response.text())
-  .then((result) => console.log(result))
-  .catch((error) => console.error(error));
+    // Add the new flat to the list
+    flats.push(newFlat);
+
+    // Save the updated list back to local storage
+    localStorage.setItem('flats', JSON.stringify(flats));
+    console.log("Flat added:", newFlat);
+    console.log("Updated flats list:", flats);
+
+    // Notify the user
+    alert('Property saved successfully!');
+
+    // Redirect to listings page or update UI dynamically
+    // window.location.href = 'listings.html';
     }
-    
+
+
     function deleteProperty() {
         const id = document.getElementById('propertyId').value;
         if (!id) {
             alert('No property selected!');
             return;
         }
-    
-        fetch(`https://localhost:7279/api/Apartment/${id}`, {
-            method: 'DELETE'
-        })
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            }
-            throw new Error('Something went wrong with the API');
-        })
-        .then(data => {
-            alert('Property deleted successfully!');
-            // Optionally clear form or update UI here
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Failed to delete the property.');
-        });
+
+        // Fetch existing flats from local storage
+        const flats = JSON.parse(localStorage.getItem('flats')) || [];
+
+        // Filter out the flat with the given ID
+        const updatedFlats = flats.filter(flat => flat.id !== parseInt(id));
+
+        // Save the updated list back to local storage
+        localStorage.setItem('flats', JSON.stringify(updatedFlats));
+
+        // Notify the user
+        alert('Property deleted successfully!');
+
+        // Optionally update UI here
     }
-    </script>
+</script>
+
     
 
 </body>

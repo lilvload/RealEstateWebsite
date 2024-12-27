@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RealtorAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+05458979d64da2aceb45c43a10322a44982a6ca4")]
 [assembly: System.Reflection.AssemblyProductAttribute("RealtorAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RealtorAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

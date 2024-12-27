@@ -434,11 +434,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Завантаження\\Telegram Desktop\\real-estate website\\real-estate website\\RealtorAPI\\RealtorAPI\\RealtorAPI.csproj",
+      "projectUniqueName": "C:\\Users\\ladyb\\OneDrive\\Рабочий стол\\проект веб\\RealEstateWebsite\\RealtorAPI\\RealtorAPI\\RealtorAPI.csproj",
       "projectName": "RealtorAPI",
-      "projectPath": "D:\\Завантаження\\Telegram Desktop\\real-estate website\\real-estate website\\RealtorAPI\\RealtorAPI\\RealtorAPI.csproj",
+      "projectPath": "C:\\Users\\ladyb\\OneDrive\\Рабочий стол\\проект веб\\RealEstateWebsite\\RealtorAPI\\RealtorAPI\\RealtorAPI.csproj",
       "packagesPath": "C:\\Users\\ladyb\\.nuget\\packages\\",
-      "outputPath": "D:\\Завантаження\\Telegram Desktop\\real-estate website\\real-estate website\\RealtorAPI\\RealtorAPI\\obj\\",
+      "outputPath": "C:\\Users\\ladyb\\OneDrive\\Рабочий стол\\проект веб\\RealEstateWebsite\\RealtorAPI\\RealtorAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
