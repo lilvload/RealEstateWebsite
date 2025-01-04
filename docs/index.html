@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Home</title>
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+   <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+<header class="header">
+   <nav class="navbar nav-1">
+      <section class="flex">
+         <a href="index.html" class="logo"><i class="fas fa-house"></i>House Advisor</a>
+         <ul>
+            <li><a href="liked_flats.html" >view liked flats<i class="fas fa-paper-plane"></i></a></li>
+            <li><a href="add_property.html">post property<i class="fas fa-paper-plane"></i></a></li>
+         </ul>
+      </section>
+   </nav>
+</header>
+
+<main class="home">
+   <section class="center">
+      <form id="search-form">
+         <h3>Find your perfect home</h3>
+         <div class="box">
+            <p>enter location <span>*</span></p>
+            <input type="text" id="location" required maxlength="50" placeholder="enter city name" class="input">
+         </div>
+         <div class="flex">
+            <div class="box">
+               <p>property type <span>*</span></p>
+               <select id="type" class="input" required>
+                  <option value="flat">flat</option>
+                  <option value="house">house</option>
+               </select>
+            </div>
+            <div class="box">
+               <p>how many rooms? <span>*</span></p>
+               <select id="rooms" class="input" required>
+                  <option value="1">1 room</option>
+                  <option value="2">2 rooms</option>
+                  <option value="3">3 rooms</option>
+                  <option value="4">4 rooms</option>
+                  <option value="5">5 rooms</option>
+                  <option value="6">6 rooms</option>
+               </select>
+            </div>
+            <div class="box">
+               <p>minimum budget <span>*</span></p>
+               <select id="minPrice" class="input" required>
+                  <option value="2000">2000 hryvnia</option>
+                  <option value="3000">3000 hryvnia</option>
+                  <option value="4000">4000 hryvnia</option>
+                  <option value="5000">5000 hryvnia</option>
+                  <option value="6000">6000 hryvnia</option>
+                  <option value="7000">7000 hryvnia</option>
+                  <option value="8000">8000 hryvnia</option>
+                  <option value="9000">9000 hryvnia</option>
+               </select>
+            </div>
+            <div class="box">
+               <p>maximum budget <span>*</span></p>
+               <select id="maxPrice" class="input" required>
+                  <option value="6000">6000 hryvnia</option>
+                  <option value="7000">7000 hryvnia</option>
+                  <option value="8000">8000 hryvnia</option>
+                  <option value="9000">9000 hryvnia</option>
+                  <option value="10000">10000 hryvnia</option>
+                  <option value="11000">11000 hryvnia</option>
+                  <option value="12000">12000 hryvnia</option>
+                  <option value="13000">13000 hryvnia</option>
+                  <option value="14000">14000 hryvnia</option>
+                  <option value="15000">15000 hryvnia</option>
+                  <option value="16000">16000 hryvня</option>
+                  <option value="17000">17000 hryвня</option>
+               </select>
+            </div>
+         </div>
+         <input type="submit" value="search property" class="btn">
+      </form>
+
+      <div id="apartments-list"></div>
+
+   </section>
+   
+   <section class="listings">
+      <h1 class="heading">All Listings</h1>
+      <div id="listings" class="box-container">
+          <!-- Flats will be dynamically loaded here via JavaScript -->
+      </div>
+  </section>
+</main>
+
+
+<footer class="footer">
+   <section class="flex">
+      <div class="box">
+         <a href="tel:+380970028783"><i class="fas fa-phone"></i><span>+380970028783</span></a>
+         <a href="mailto: mykhailova.sofia@lll.kpi.ua"><i class="fas fa-envelope"></i><span>mykhailova.sofia@lll.kpi.ua</span></a>
+         <a href="#"><i class="fas fa-map-marker-alt"></i><span>Kyiv, Ukraine</span></a>
+      </div>
+      <div class="box">
+         <a href="about.html"><span>about</span></a>
+      </div>
+   </section>
+</footer>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>

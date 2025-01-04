@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "city": "Kyiv",
+        "address": "Not provided",
+        "rooms": 3,
+        "price": 7000,
+        "owner": "Vlad Bakunets",
+        "imageUrl": "images/house-img-1.webp",
+        "dateAdded": "2024-05-10T00:00:00Z"
+    },
+    {
+        "id": 2,
+        "city": "Kyiv",
+        "address": "Not provided",
+        "rooms": 1,
+        "price": 6000,
+        "owner": "Sofia Mykhailova",
+        "imageUrl": "images/house-img-2.webp",
+        "dateAdded": "2024-05-10T00:00:00Z"
+    },
+    {
+        "id": 3,
+        "city": "Kyiv",
+        "address": "Not provided",
+        "rooms": 2,
+        "price": 3000,
+        "owner": "Sofia Mykhailova",
+        "imageUrl": "images/house-img-3.jpg",
+        "dateAdded": "2024-05-10T00:00:00Z"
+    },
+    {
+        "id": 4,
+        "city": "Kyiv",
+        "address": "Not provided",
+        "rooms": 8,
+        "price": 20000,
+        "owner": "Sofia Mykhailova",
+        "imageUrl": "images/house-img-4.webp",
+        "dateAdded": "2024-05-10T00:00:00Z"
+    },
+    {
+        "id": 5,
+        "city": "Kyiv",
+        "address": "Not provided",
+        "rooms": 2,
+        "price": 3000,
+        "owner": "Sofia Mykhailova",
+        "imageUrl": "images/house-img-5.webp",
+        "dateAdded": "2024-05-10T00:00:00Z"
+    },
+    {
+        "id": 6,
+        "city": "Kyiv",
+        "address": "Not provided",
+        "rooms": 5,
+        "price": 15000,
+        "owner": "Sofia Mykhailova",
+        "imageUrl": "images/house-img-6.webp",
+        "dateAdded": "2024-05-10T00:00:00Z"
+    }
+]
